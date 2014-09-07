@@ -1,0 +1,44 @@
+<p>
+	<strong><%= @name.namalengkap %></strong>
+</p>
+
+<%= image_tag "#{@name.npm}.jpg", size:"354x433" %>
+
+<h2>Tags</h2>
+<% @name.tags.each do |tag| %>
+
+<% if false %>
+	<p>
+		<strong>Tagger:</strong>
+		<%= tag.tagger %>
+	</p>
+	
+	<p>
+		<strong>Tag:</strong>
+		<%= tag.tagtext %>
+	</p>
+<% end %>
+
+	<p>
+	- <strong><%= tag.tagtext %></strong> (<i>tagged by <%= tag.tagger %></i>)
+	</p>
+
+<% end %>
+
+<h2>Add a tag:</h2>
+<%= form_for([@name, @name.tags.build]) do |f| %>
+	<p>
+		<%= f.label :tagger %><br>
+		<%= f.text_field :tagger %>
+	</p>
+	<p>
+		<%= f.label :tagtext %><br>
+		<%= f.text_area :tagtext %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
+
+<%= link_to 'Back', names_path %>
+| <%= link_to 'Edit', edit_name_path(@name) %>
